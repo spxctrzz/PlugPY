@@ -83,34 +83,23 @@ def upload_photos(driver, order_name, item):
     fullsigpath = str(os.path.abspath(glob.glob(f"{fullname}.*")[0]))
     os.chdir(cwd)
 
+    file_inputs = driver.find_elements(By.XPATH, '//input[@type="file"]')
+
     try:
-        photoupload = driver.find_element(By.CSS_SELECTOR, "#_img1").click()
+        file_inputs[0].send_keys(fullphotopath)
         sleep(0.6)
-        keyboard.type(fullphotopath)
-        keyboard.press(Key.enter)
-        keyboard.release(Key.enter)
-        photoupload = driver.find_element(By.CSS_SELECTOR, "#_img1").click()
-        sleep(0.6)
-        keyboard.type(fullphotopath)
-        keyboard.press(Key.enter)
-        keyboard.release(Key.enter)
+
         WebDriverWait(driver, 100).until(EC.text_to_be_present_in_element((By.XPATH, "//*[@id=\"_img1\"]/div[2]"), "100"))
         sleep(0.2)
-    except:
+    except Exception as e:
         print(f"[-] Photo Upload Failed - {fullname}")
+        print(e)
         pass
 
     try:
-        sigupload = driver.find_element(By.CSS_SELECTOR, "#_img2").click()
+        file_inputs[1].send_keys(fullsigpath)
         sleep(0.6)
-        keyboard.type(fullsigpath)
-        keyboard.press(Key.enter)
-        keyboard.release(Key.enter)
-        sigupload = driver.find_element(By.CSS_SELECTOR, "#_img2").click()
-        sleep(0.6)
-        keyboard.type(fullsigpath)
-        keyboard.press(Key.enter)
-        keyboard.release(Key.enter)
+
         WebDriverWait(driver, 100).until(EC.text_to_be_present_in_element((By.XPATH, "//*[@id=\"_img2\"]/div[2]"), "100"))
         sleep(0.3)
         addtocart = driver.find_element(By.XPATH, "//*[@id=\"container_body\"]/div/div[1]/div[4]/div[4]/div[2]/button[2]").click()
@@ -122,6 +111,7 @@ def upload_photos(driver, order_name, item):
         print(Fore.LIGHTYELLOW_EX, f"[+] Added | {fullname} | {state}")
     except:
         print(f"[-] Signature Upload Failed - {fullname}")
+
         pass
     sleep(0.5)
     return
@@ -673,10 +663,8 @@ def start():
         response = check_form_q(order=order)
         if response == True:
             
-            from pyvirtualdisplay import Display
-            with Display(visible=1, size=(1920, 1080)):
-                driver = Driver(uc=True)
-                add_to_cart(order_name=order, driver=driver)
+            driver = Driver(uc=True)
+            add_to_cart(order_name=order, driver=driver)
         else:
             start()
 
