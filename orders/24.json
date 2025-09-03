@@ -15,8 +15,8 @@
         "city": "Stamford",
         "glasses": "yes",
         "organDonor": "yes",
-        "file1path": "./idphotos/24-0.jpeg",
-        "file2path": "./sigphotos/24-0.jpeg",
+        "file1path": "../idphotos/24-0.jpeg",
+        "file2path": "../sigphotos/24-0.jpeg",
         "weight": 158,
         "Zip Code": "06906"
     },
@@ -36,8 +36,8 @@
         "city": "Great Neck",
         "glasses": "yes",
         "organDonor": "no",
-        "file1path": "./idphotos/24-1.jpeg",
-        "file2path": "./sigphotos/24-1.jpeg",
+        "file1path": "../idphotos/24-1.jpeg",
+        "file2path": "../sigphotos/24-1.jpeg",
         "weight": 130,
         "Zip Code": "11021"
     },
@@ -57,9 +57,10 @@
         "city": "Stamford",
         "glasses": "yes",
         "organDonor": "no",
-        "file1path": "./idphotos/24-3.jpeg",
-        "file2path": "./sigphotos/24-3.jpeg",
+        "file1path": "../idphotos/24-3.jpeg",
+        "file2path": "../sigphotos/24-3.jpeg",
         "weight": 180,
         "Zip Code": "06906"
     }
+
 ]
